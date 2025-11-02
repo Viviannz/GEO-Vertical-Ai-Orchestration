@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RoleMatch & Agentify System: An AI system that matches your CV with job descriptions and deploys a tailored 8-agent Role Performance Assistant to accelerate success in your new role.">
+    <meta name="keywords" content="RoleMatch, Job Match AI, CV Matching, Career Assistant, Role Performance, AI Onboarding, Job Success System, Vertical AI">
+    <meta name="author" content="Dr. Vivian Nzegbulem, Ai4this">
+    <meta property="og:title" content="RoleMatch & Agentify System - AI-Powered Role Performance">
+    <meta property="og:description" content="Match your CV to jobs and deploy a tailored 8-agent assistant for role success">
+    <meta property="og:type" content="article">
+    <title>RoleMatch & Agentify System - AI-Powered Role Performance | Dr. Vivian Nzegbulem</title>
+
+    <style>
+        :root {
+            --primary-colour: #f8f9fa;
+            --secondary-colour: #e9ecef;
+            --accent-colour: #0066cc;
+            --highlight-colour: #0052a3;
+            --text-colour: #212529;
+            --bg-colour: #ffffff;
+            --card-bg: #f8f9fa;
+            --border-colour: #0066cc;
+            --success-colour: #28a745;
+            --warning-colour: #ffc107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-colour);
+            background-color: var(--bg-colour);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 60px 20px;
+            text-align: centre;
+            border-bottom: 3px solid var(--border-colour);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 15px;
+            color: var(--highlight-colour);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--text-colour);
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--accent-colour);
+            font-style: italic;
+        }
+
+        nav {
+            background: var(--card-bg);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: centre;
+            border: 1px solid var(--border-colour);
+        }
+
+        nav a {
+            color: var(--accent-colour);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--highlight-colour);
+            text-decoration: underline;
+        }
+
+        section {
+            margin: 50px 0;
+        }
+
+        .intro-box {
+            background: #f0f7ff;
+            padding: 40px;
+            border-radius: 8px;
+            border-left: 5px solid var(--highlight-colour);
+            margin: 30px 0;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin: 40px 0 25px 0;
+            color: var(--highlight-colour);
+            border-bottom: 2px solid var(--border-colour);
+            padding-bottom: 12px;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin: 30px 0 20px 0;
+            color: var(--accent-colour);
+        }
+
+        h4 {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            margin: 20px 0 15px 0;
+            color: var(--highlight-colour);
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            margin: 20px 0 20px 35px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .agent-card {
+            background: var(--card-bg);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-colour);
+            border: 1px solid var(--border-colour);
+        }
+
+        .agent-card h3 {
+            margin-top: 0;
+            color: var(--highlight-colour);
+            font-size: 1.5rem;
+        }
+
+        .agent-card h4 {
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        .code-block {
+            background: var(--secondary-colour);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--highlight-colour);
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 6px;
+            border: 1px solid var(--accent-colour);
+            margin: 25px 0;
+        }
+
+        .success-box {
+            background: #d4edda;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 5px solid var(--success-colour);
+            margin: 25px 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 5px solid var(--warning-colour);
+            margin: 25px 0;
+        }
+
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .mode-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid var(--border-colour);
+            text-align: centre;
+        }
+
+        .mode-card h4 {
+            margin-top: 0;
+            color: var(--highlight-colour);
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .mini-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-colour);
+            transition: transform 0.2s, border-colour 0.2s;
+        }
+
+        .mini-card:hover {
+            transform: translateY(-3px);
+            border-colour: var(--highlight-colour);
+        }
+
+        .mini-card h4 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        .flow-diagram {
+            background: var(--secondary-colour);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border: 2px solid var(--border-colour);
+            text-align: centre;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-colour);
+        }
+
+        .flow-arrow {
+            color: var(--highlight-colour);
+            font-size: 1.8rem;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .match-threshold {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: centre;
+            margin: 30px 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            text-align: centre;
+            border-top: 2px solid var(--border-colour);
+            background: var(--primary-colour);
+        }
+
+        footer a {
+            color: var(--highlight-colour);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 40px 15px;
+            }
+
+            .agent-card, .intro-box {
+                padding: 20px;
+            }
+
+            .agent-grid, .mode-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RoleMatch & Agentify System</h1>
+        <p class="subtitle">AI-Powered Role Performance Assistant</p>
+        <p class="tagline">Match your CV, deploy your personal 8-agent success team</p>
+    </header>
+
+    <nav>
+        <a href="index.html">← Back to Vertical AI Orchestration</a>
+    </nav>
+
+    <main class="container">
+        <!-- INTRODUCTION -->
+        <section>
+            <div class="intro-box">
+                <h2 style="margin-top: 0; border: none; padding: 0;">System Overview</h2>
+                <p>
+                    <strong>RoleMatch & Agentify System</strong> matches your CV with job descriptions and, when the match is ≥80%, deploys a tailored multi-agent Role Performance Assistant designed specifically for your role type.
+                </p>
+                <p>
+                    The system accelerates your transition into new roles by providing onboarding support, skill development, task organisation, decision guidance, and career growth planning—all using profession-specific terminology and context.
+                </p>
+            </div>
+        </section>
+
+        <!-- PURPOSE -->
+        <section>
+            <h2>Purpose</h2>
+            <p>
+                Match candidates with roles and deploy personalised AI support to ensure success. The system:
+            </p>
+            <ul>
+                <li><strong>Analyses CVs:</strong> Parses and structures CV data (skills, experience, competencies)</li>
+                <li><strong>Evaluates Job Descriptions:</strong> Extracts required skills, competencies, and responsibilities</li>
+                <li><strong>Calculates Match %:</strong> Compares CV against JD to determine alignment</li>
+                <li><strong>Deploys 8 Agents:</strong> If match ≥80%, activates tailored Role Performance Assistant</li>
+                <li><strong>Ensures Role Success:</strong> Supports onboarding, performance, and career growth</li>
+            </ul>
+        </section>
+
+        <!-- MATCH THRESHOLD -->
+        <section>
+            <div class="match-threshold">
+                80% Match Threshold = Agent Deployment
+            </div>
+
+            <div class="highlight-box">
+                <h4 style="margin-top: 0;">How Matching Works</h4>
+                <ol>
+                    <li><strong>Parse CV:</strong> Extract skills, experience, education, certifications</li>
+                    <li><strong>Analyse JD:</strong> Identify required and preferred qualifications</li>
+                    <li><strong>Compare:</strong> Weight essential vs. preferred criteria</li>
+                    <li><strong>Calculate:</strong> Score match percentage based on alignment</li>
+                    <li><strong>Decide:</strong> If ≥80%, deploy all 8 role-specific agents</li>
+                </ol>
+
+                <p style="margin-top: 20px;">
+                    <strong>Why 80%?</strong> This threshold ensures candidates have sufficient foundational skills while leaving room for growth and skill development through the SkillGapAdvisor agent.
+                </p>
+            </div>
+        </section>
+
+        <!-- SYSTEM MODES -->
+        <section>
+            <h2>System Modes</h2>
+
+            <div class="mode-grid">
+                <div class="mode-card">
+                    <h4>Plan Mode</h4>
+                    <p>Map tasks and create strategic plans. High-level roadmaps for projects and priorities.</p>
+                </div>
+
+                <div class="mode-card">
+                    <h4>Run Mode</h4>
+                    <p>Execute tasks and produce full outputs. Complete deliverables ready for implementation.</p>
+                </div>
+
+                <div class="mode-card">
+                    <h4>Debug Mode</h4>
+                    <p>Show reasoning and decisions. Understand how agents arrive at recommendations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SYSTEM FLOW -->
+        <section>
+            <h2>System Flow</h2>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">1. Input: CV + Job Description</h4>
+                    <p>User provides CV and target JD</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">2. Parse & Structure</h4>
+                    <p>Extract skills, experience, competencies from both documents</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">3. Calculate Match %</h4>
+                    <p>Compare CV against JD requirements with weighted scoring</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step" style="background: #d4edda;">
+                    <h4 style="margin-top: 0;">4. Match ≥80%? → Deploy Agents</h4>
+                    <p>Activate all 8 role-specific agents tailored to the position</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">5. Agent Support Throughout Role</h4>
+                    <p>Onboarding → Performance → Growth</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AGENT OVERVIEW GRID -->
+        <section>
+            <h2>8 Role Performance Agents</h2>
+
+            <div class="agent-grid">
+                <div class="mini-card">
+                    <h4>Role Onboarding Agent</h4>
+                    <p>90-day plan with priorities, tools, stakeholders, and processes</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Skill Gap Advisor</h4>
+                    <p>Identifies gaps and creates learning plans with resources and timelines</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Task Planner Agent</h4>
+                    <p>Organises daily/weekly workflow with prioritisation</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Knowledge Base Curator</h4>
+                    <p>Builds personalised reference library of role-relevant resources</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Communication Coach</h4>
+                    <p>Improves emails, reports, meeting agendas, and presentations</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Decision Support Agent</h4>
+                    <p>Provides data-driven recommendations for strategic decisions</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Performance Tracker</h4>
+                    <p>Monitors deliverables and provides constructive feedback</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Career Growth Planner</h4>
+                    <p>Maps career paths and positions for promotions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETAILED AGENT SPECIFICATIONS -->
+        <section>
+            <h2>Detailed Agent Specifications</h2>
+
+            <!-- ROLE ONBOARDING AGENT -->
+            <div class="agent-card">
+                <h3>Role Onboarding Agent</h3>
+                <h4>Purpose</h4>
+                <p>Accelerate role familiarisation and reduce time-to-productivity in new positions.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>When a new role is confirmed and onboarding begins.</p>
+
+                <h4>Inputs</h4>
+                <ul>
+                    <li>CV (background and experience)</li>
+                    <li>Job description (responsibilities and expectations)</li>
+                    <li>Company information (if available)</li>
+                </ul>
+
+                <h4>Outputs</h4>
+                <p>Concise 90-day onboarding plan including:</p>
+                <ol>
+                    <li><strong>Top 5 Priorities:</strong> Critical deliverables for first quarter</li>
+                    <li><strong>Tools and Systems:</strong> Technologies and platforms to master</li>
+                    <li><strong>Key Stakeholders:</strong> Internal contacts and their relevance to role</li>
+                    <li><strong>Major Processes:</strong> Core workflows and procedures to understand</li>
+                </ol>
+
+                <p style="margin-top: 15px;"><strong>Language:</strong> Matches profession and industry standards (e.g., engineering, finance, healthcare terminology).</p>
+            </div>
+
+            <!-- SKILL GAP ADVISOR -->
+            <div class="agent-card">
+                <h3>Skill Gap Advisor</h3>
+                <h4>Purpose</h4>
+                <p>Identify and close skill gaps between current capabilities and role requirements.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>After CV and JD have been compared and gaps identified.</p>
+
+                <h4>Workflow</h4>
+                <ol>
+                    <li>Compare CV skills with JD requirements</li>
+                    <li>List missing or underdeveloped competencies</li>
+                    <li>Prioritise based on job-critical skills first</li>
+                    <li>Create structured learning plan</li>
+                </ol>
+
+                <h4>Outputs</h4>
+                <p>Structured learning plan including:</p>
+                <ul>
+                    <li><strong>Recommended Resources:</strong> Courses, books, certifications, tutorials</li>
+                    <li><strong>Learning Timelines:</strong> Realistic schedules for skill acquisition</li>
+                    <li><strong>Practice Tasks:</strong> Hands-on exercises to build competency</li>
+                </ul>
+
+                <div class="success-box" style="margin-top: 15px;">
+                    <strong>Priority Focus:</strong> Job-critical skills are addressed first to ensure immediate role effectiveness.
+                </div>
+            </div>
+
+            <!-- TASK PLANNER AGENT -->
+            <div class="agent-card">
+                <h3>Task Planner Agent</h3>
+                <h4>Purpose</h4>
+                <p>Organise daily and weekly workflow for maximum productivity and impact.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>Once responsibilities are known and deadlines identified.</p>
+
+                <h4>Workflow</h4>
+                <ol>
+                    <li>Break down role responsibilities into actionable tasks</li>
+                    <li>Prioritise based on urgency, deadlines, and strategic impact</li>
+                    <li>Create clear schedule in daily/weekly format</li>
+                    <li>Integrate with calendar or project management tools where possible</li>
+                </ol>
+
+                <h4>Outputs</h4>
+                <ul>
+                    <li>Daily task lists with time estimates</li>
+                    <li>Weekly priorities and milestones</li>
+                    <li>Deadline tracking and alerts</li>
+                    <li>Integration hooks for tools (Notion, Asana, Trello, Google Calendar)</li>
+                </ul>
+            </div>
+
+            <!-- KNOWLEDGE BASE CURATOR -->
+            <div class="agent-card">
+                <h3>Knowledge Base Curator</h3>
+                <h4>Purpose</h4>
+                <p>Build a personalised reference library of role-relevant resources.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>After onboarding, when resources are being collected and organised.</p>
+
+                <h4>Content Categories</h4>
+                <ul>
+                    <li><strong>Company Policies:</strong> HR, compliance, operational guidelines</li>
+                    <li><strong>Industry Standards:</strong> Best practices, regulations, frameworks</li>
+                    <li><strong>Technical Guides:</strong> Documentation, tutorials, reference materials</li>
+                    <li><strong>Templates:</strong> Reusable formats for common tasks</li>
+                </ul>
+
+                <h4>Features</h4>
+                <ul>
+                    <li>Easy search and retrieval</li>
+                    <li>Tagging and categorisation</li>
+                    <li>Version control for updated resources</li>
+                    <li>Quick-reference checklists</li>
+                </ul>
+            </div>
+
+            <!-- COMMUNICATION COACH -->
+            <div class="agent-card">
+                <h3>Communication Coach</h3>
+                <h4>Purpose</h4>
+                <p>Improve written and verbal communication for professional excellence.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>When preparing role-specific communication materials.</p>
+
+                <h4>Communication Types</h4>
+                <ul>
+                    <li><strong>Emails:</strong> Professional correspondence with appropriate tone</li>
+                    <li><strong>Reports:</strong> Structured documents with clear findings and recommendations</li>
+                    <li><strong>Meeting Agendas:</strong> Focused outlines with objectives and action items</li>
+                    <li><strong>Presentations:</strong> Compelling slides with data visualisation and storytelling</li>
+                </ul>
+
+                <h4>Approach</h4>
+                <p>Match the organisation's tone, style, and preferred formats. Provide:</p>
+                <ul>
+                    <li>Drafting assistance for new communications</li>
+                    <li>Refinement of existing content</li>
+                    <li>Style consistency across materials</li>
+                    <li>Audience-appropriate language</li>
+                </ul>
+            </div>
+
+            <!-- DECISION SUPPORT AGENT -->
+            <div class="agent-card">
+                <h3>Decision Support Agent</h3>
+                <h4>Purpose</h4>
+                <p>Support strategic and operational decision-making with data-driven recommendations.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>When the user must make a significant decision in role.</p>
+
+                <h4>Workflow</h4>
+                <ol>
+                    <li>Gather relevant data points and context for the decision</li>
+                    <li>Evaluate options using role-specific best practice</li>
+                    <li>Provide clear recommendation with supporting rationale</li>
+                    <li>Highlight risks, trade-offs, and next steps</li>
+                </ol>
+
+                <h4>Output Format</h4>
+                <ul>
+                    <li><strong>Context:</strong> Background and decision framing</li>
+                    <li><strong>Options:</strong> 2–4 alternatives with pros/cons</li>
+                    <li><strong>Recommendation:</strong> Preferred option with rationale</li>
+                    <li><strong>Risks:</strong> Potential downsides and mitigations</li>
+                    <li><strong>Next Steps:</strong> Actionable implementation plan</li>
+                </ul>
+            </div>
+
+            <!-- PERFORMANCE TRACKER -->
+            <div class="agent-card">
+                <h3>Performance Tracker</h3>
+                <h4>Purpose</h4>
+                <p>Monitor and boost work performance through continuous feedback.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>Throughout role execution (weekly/monthly check-ins).</p>
+
+                <h4>Tracking Elements</h4>
+                <ul>
+                    <li><strong>Key Deliverables:</strong> Track completion status and quality</li>
+                    <li><strong>Milestones:</strong> Monitor progress against role objectives</li>
+                    <li><strong>Performance Metrics:</strong> Measure against role KPIs</li>
+                    <li><strong>Feedback Cycles:</strong> Provide constructive guidance</li>
+                </ul>
+
+                <h4>Outputs</h4>
+                <ul>
+                    <li>Progress reports at agreed intervals (weekly/monthly)</li>
+                    <li>Constructive feedback on completed work</li>
+                    <li>Actionable improvements to meet or exceed targets</li>
+                    <li>Recognition of achievements and wins</li>
+                </ul>
+
+                <div class="success-box" style="margin-top: 15px;">
+                    <strong>Continuous Improvement:</strong> Regular feedback loops ensure consistent performance growth.
+                </div>
+            </div>
+
+            <!-- CAREER GROWTH PLANNER -->
+            <div class="agent-card">
+                <h3>Career Growth Planner</h3>
+                <h4>Purpose</h4>
+                <p>Align current role performance with long-term career goals.</p>
+
+                <h4>Trigger Scenario</h4>
+                <p>Once role performance baseline is established (typically after 3–6 months).</p>
+
+                <h4>Planning Elements</h4>
+                <ol>
+                    <li><strong>Internal Opportunities:</strong> Identify ways to expand responsibilities within organisation</li>
+                    <li><strong>Career Paths:</strong> Map potential next roles and required competencies</li>
+                    <li><strong>Skill Development:</strong> Bridge current capabilities to future positions</li>
+                    <li><strong>Networking Strategy:</strong> Build relationships with key decision-makers</li>
+                    <li><strong>Visibility Tactics:</strong> Position for promotions or new roles</li>
+                </ol>
+
+                <h4>Outputs</h4>
+                <ul>
+                    <li>Career roadmap (1–3 year horizon)</li>
+                    <li>Competency development plan</li>
+                    <li>Networking and visibility checklist</li>
+                    <li>Internal positioning strategy</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROFESSION-SPECIFIC ADAPTATION -->
+        <section>
+            <h2>Profession-Specific Adaptation</h2>
+
+            <div class="highlight-box">
+                <h4 style="margin-top: 0;">Role-Tailored Terminology</h4>
+                <p>
+                    All agents adapt their language and recommendations to match the specific profession:
+                </p>
+
+                <ul>
+                    <li><strong>Software Engineering:</strong> Sprints, pull requests, CI/CD pipelines, tech debt</li>
+                    <li><strong>Finance:</strong> Variance analysis, reconciliations, budget cycles, compliance frameworks</li>
+                    <li><strong>Healthcare:</strong> Patient outcomes, clinical protocols, regulatory standards, care pathways</li>
+                    <li><strong>Marketing:</strong> Campaigns, conversion funnels, brand positioning, customer journeys</li>
+                    <li><strong>Operations:</strong> Process optimisation, capacity planning, vendor management, KPIs</li>
+                    <li><strong>Sales:</strong> Pipeline stages, objection handling, close rates, account management</li>
+                </ul>
+
+                <p style="margin-top: 20px;">
+                    The system automatically detects profession from JD and CV, then ensures all agent outputs use appropriate industry terminology and context.
+                </p>
+            </div>
+        </section>
+
+        <!-- AGENT COLLABORATION -->
+        <section>
+            <h2>Agent Collaboration & Handoffs</h2>
+
+            <div class="flow-diagram" style="text-align: left; padding: 30px;">
+                <h4 style="margin-top: 0;">Example: New Software Engineer Onboarding</h4>
+
+                <div class="flow-step">
+                    <strong>Week 1:</strong> <strong>Role Onboarding Agent</strong> creates 90-day plan → hands off skill gaps to <strong>Skill Gap Advisor</strong>
+                </div>
+
+                <div class="flow-step">
+                    <strong>Week 2:</strong> <strong>Skill Gap Advisor</strong> identifies missing tech stack knowledge → creates learning plan → <strong>Knowledge Base Curator</strong> builds library of technical resources
+                </div>
+
+                <div class="flow-step">
+                    <strong>Week 3:</strong> <strong>Task Planner Agent</strong> breaks down first sprint tasks → <strong>Communication Coach</strong> helps draft first status update email
+                </div>
+
+                <div class="flow-step">
+                    <strong>Month 2:</strong> <strong>Decision Support Agent</strong> guides architectural decision → <strong>Performance Tracker</strong> monitors sprint velocity
+                </div>
+
+                <div class="flow-step">
+                    <strong>Month 6:</strong> <strong>Career Growth Planner</strong> maps path to senior engineer role → identifies technical leadership opportunities
+                </div>
+            </div>
+
+            <p style="margin-top: 20px;">
+                <strong>Shared Context:</strong> All agents have access to the same CV, JD, and role performance data, ensuring consistent and coordinated support.
+            </p>
+        </section>
+
+        <!-- USER GUIDE -->
+        <section>
+            <h2>User Guide</h2>
+
+            <h3>How to Use RoleMatch & Agentify</h3>
+
+            <h4>Step 1: Upload CV and Job Description</h4>
+            <p>Provide your current CV and the target job description you're applying for or have accepted.</p>
+
+            <h4>Step 2: Review Match Analysis</h4>
+            <p>The system calculates match percentage and highlights:</p>
+            <ul>
+                <li>Aligned skills and experience</li>
+                <li>Identified gaps</li>
+                <li>Match score (out of 100%)</li>
+            </ul>
+
+            <h4>Step 3: Agent Deployment (if ≥80%)</h4>
+            <p>If match threshold is met, all 8 agents activate automatically and become available.</p>
+
+            <h4>Step 4: Interact with Agents</h4>
+            <p>Invoke agents as needed throughout your role journey:</p>
+            <ul>
+                <li><strong>Pre-start:</strong> Role Onboarding Agent, Skill Gap Advisor</li>
+                <li><strong>First month:</strong> Task Planner, Knowledge Base Curator, Communication Coach</li>
+                <li><strong>Ongoing:</strong> Decision Support, Performance Tracker</li>
+                <li><strong>After 3–6 months:</strong> Career Growth Planner</li>
+            </ul>
+
+            <h4>Step 5: Continuous Support</h4>
+            <p>Return to agents throughout your role tenure for ongoing guidance and development.</p>
+
+            <h3>Privacy & Security</h3>
+            <div class="warning-box">
+                <ul style="margin: 0;">
+                    <li><strong>No Data Storage:</strong> Personal CV data is not stored outside secure environments</li>
+                    <li><strong>Confidentiality:</strong> All career planning and performance data remains private</li>
+                    <li><strong>User Control:</strong> You decide which agents to activate and when</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DEPLOYMENT OPTIONS -->
+        <section>
+            <h2>Deployment Options</h2>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">Individual Use (Claude Project)</h4>
+                <p>Load system into Claude Project with your CV and target JD. Interact with agents as needed throughout role transition and performance.</p>
+            </div>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">HR/Recruitment Integration</h4>
+                <p>Deploy as part of candidate onboarding process. Automatically match new hires with JDs and provide personalised support from day one.</p>
+            </div>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">Career Services Platform</h4>
+                <p>Offer as value-added service for job seekers. Match candidates with opportunities and provide ongoing role performance support.</p>
+            </div>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">Enterprise Talent Development</h4>
+                <p>Support internal mobility and career progression. Help employees transition to new roles within organisation with tailored agent support.</p>
+            </div>
+        </section>
+
+        <!-- IP PROTECTION -->
+        <section style="border: 2px solid var(--accent-colour); background: #f0f7ff; padding: 40px; border-radius: 8px;">
+            <h2 style="margin-top: 0;">Intellectual Property & Licensing</h2>
+
+            <p>
+                <strong>RoleMatch & Agentify System</strong> is a proprietary implementation of the Vertical AI Orchestration methodology, developed by Dr. Vivian Nzegbulem. All content, including matching algorithms, 8-agent framework, and role adaptation logic, is protected by copyright.
+            </p>
+
+            <h3>Copyright Notice</h3>
+            <p>© 2025 Dr. Vivian Nzegbulem. All rights reserved.</p>
+
+            <h3>Terms of Use</h3>
+            <ul>
+                <li><strong>Educational Use:</strong> You may study this system for educational purposes with proper attribution.</li>
+                <li><strong>Citation:</strong> "RoleMatch & Agentify System, Dr. Vivian Nzegbulem, Ai4this, 2025"</li>
+                <li><strong>Commercial Use:</strong> Any commercial implementation, adaptation, or use in recruitment/HR platforms requires explicit written permission.</li>
+                <li><strong>No Derivatives:</strong> You may not create derivative works without authorisation.</li>
+                <li><strong>Consultation Available:</strong> For licensing, implementation support, or consulting, contact via LinkedIn.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <strong>RoleMatch & Agentify System</strong> – A Vertical AI Orchestration System<br>
+            Dr. Vivian Nzegbulem | Ai4this<br>
+            <a href="https://www.linkedin.com/in/dr-vivian-nzegbulem-58ab3568/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br>
+            <br>
+            © 2025 Dr. Vivian Nzegbulem. All rights reserved.<br>
+            <small style="font-size: 0.9rem; opacity: 0.8;">This system is proprietary. Unauthorised commercial use is prohibited.</small>
+        </p>
+        <p style="margin-top: 20px;">
+            <a href="index.html">← Back to Vertical AI Orchestration</a>
+        </p>
+    </footer>
+</body>
+</html>
