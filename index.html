@@ -130,14 +130,15 @@
 
     <style>
         :root {
-            --primary-colour: #f8f9fa;
-            --secondary-colour: #e9ecef;
-            --accent-colour: #0066cc;
-            --highlight-colour: #0052a3;
-            --text-colour: #212529;
+            --primary-colour: #000000;
+            --secondary-colour: #ffffff;
+            --accent-colour: #14b8a6;
+            --accent-dark: #0d9488;
+            --text-colour: #000000;
+            --text-light: #6b7280;
             --bg-colour: #ffffff;
-            --card-bg: #ffffff;
-            --border-colour: #dee2e6;
+            --card-bg: #fafafa;
+            --border-colour: #e5e7eb;
         }
 
         * {
@@ -147,11 +148,12 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.7;
             color: var(--text-colour);
             background-color: var(--bg-colour);
             font-size: 16px;
+            letter-spacing: -0.01em;
         }
 
         .container {
@@ -162,12 +164,13 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0052a3 0%, #0066cc 50%, #0080ff 100%);
-            color: white;
-            padding: 100px 20px;
+            background: var(--primary-colour);
+            color: var(--secondary-colour);
+            padding: 120px 20px;
             text-align: centre;
             position: relative;
             overflow: hidden;
+            border-bottom: 3px solid var(--accent-colour);
         }
 
         .hero::before {
@@ -177,7 +180,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 82, 163, 0.9) 0%, rgba(0, 102, 204, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.03) 0%, rgba(13, 148, 136, 0.05) 100%);
             z-index: 1;
         }
 
@@ -191,9 +194,9 @@
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             margin-bottom: 20px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            letter-spacing: -2px;
+            text-shadow: none;
         }
 
         .hero .tagline {
@@ -212,11 +215,13 @@
 
         .hero .author {
             font-size: 1.3rem;
-            font-weight: 600;
+            font-weight: 500;
             margin-top: 30px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
+            background: rgba(20, 184, 166, 0.1);
+            border-radius: 0px;
+            border-top: 1px solid var(--accent-colour);
+            border-bottom: 1px solid var(--accent-colour);
             backdrop-filter: blur(10px);
         }
 
@@ -230,21 +235,26 @@
 
         .cta-button {
             display: inline-block;
-            padding: 15px 35px;
-            background: white;
-            color: var(--highlight-colour);
+            padding: 16px 40px;
+            background: var(--accent-colour);
+            color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            border-radius: 0px;
+            font-weight: 500;
+            font-size: 1rem;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: none;
+            border: 2px solid var(--accent-colour);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-            background: #f8f9fa;
+            transform: none;
+            box-shadow: none;
+            background: var(--accent-dark);
+            border-colour: var(--accent-dark);
         }
 
         .cta-button.secondary {
@@ -254,13 +264,14 @@
         }
 
         .cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: white;
+            color: var(--primary-colour);
         }
 
         /* Stats Section */
         .stats-banner {
-            background: var(--primary-colour);
-            padding: 60px 20px;
+            background: var(--card-bg);
+            padding: 80px 20px;
             text-align: centre;
             border-bottom: 1px solid var(--border-colour);
         }
@@ -278,11 +289,12 @@
         }
 
         .stat-number {
-            font-size: 3rem;
-            color: var(--highlight-colour);
-            font-weight: 700;
+            font-size: 3.5rem;
+            color: var(--accent-colour);
+            font-weight: 600;
             display: block;
             margin-bottom: 10px;
+            letter-spacing: -1px;
         }
 
         .stat-label {
@@ -303,9 +315,10 @@
 
         .section-header h2 {
             font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--highlight-colour);
+            color: var(--primary-colour);
             margin-bottom: 15px;
             font-weight: 600;
+            letter-spacing: -1px;
         }
 
         .section-header p {
@@ -325,12 +338,12 @@
         }
 
         .system-card {
-            background: var(--card-bg);
+            background: var(--secondary-colour);
             border: 1px solid var(--border-colour);
-            border-radius: 12px;
-            padding: 35px;
+            border-radius: 0px;
+            padding: 40px;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: none;
             position: relative;
             overflow: hidden;
         }
@@ -341,8 +354,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent-colour), var(--highlight-colour));
+            height: 3px;
+            background: var(--accent-colour);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s;
@@ -353,29 +366,31 @@
         }
 
         .system-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            border-colour: var(--accent-colour);
+            transform: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border-colour: var(--primary-colour);
         }
 
         .system-card h3 {
-            font-size: 1.6rem;
-            color: var(--highlight-colour);
+            font-size: 1.8rem;
+            color: var(--primary-colour);
             margin-bottom: 10px;
             font-weight: 600;
+            letter-spacing: -0.5px;
         }
 
         .system-category {
             display: inline-block;
-            background: #e3f2fd;
-            color: var(--highlight-colour);
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
+            background: transparent;
+            color: var(--accent-colour);
+            padding: 6px 0px;
+            border-radius: 0px;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-colour);
         }
 
         .system-description {
@@ -406,7 +421,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--highlight-colour);
+            color: var(--accent-colour);
             font-weight: 700;
             font-size: 1.2rem;
         }
@@ -425,47 +440,56 @@
         }
 
         .meta-item strong {
-            color: var(--highlight-colour);
+            color: var(--primary-colour);
             font-weight: 600;
         }
 
         .system-link {
             display: inline-block;
-            padding: 12px 28px;
-            background: var(--accent-colour);
+            padding: 14px 32px;
+            background: var(--primary-colour);
             color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
+            border-radius: 0px;
+            font-weight: 500;
             transition: all 0.3s;
             margin-top: 10px;
+            border: 2px solid var(--primary-colour);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
         }
 
         .system-link:hover {
-            background: var(--highlight-colour);
-            transform: translateX(3px);
+            background: var(--accent-colour);
+            border-colour: var(--accent-colour);
+            transform: none;
         }
 
         /* Methodology Section */
         .methodology-section {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            padding: 80px 20px;
+            background: var(--card-bg);
+            padding: 100px 20px;
+            border-top: 1px solid var(--border-colour);
+            border-bottom: 1px solid var(--border-colour);
         }
 
         .methodology-content {
             max-width: 900px;
             margin: 0 auto;
             background: white;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            padding: 60px;
+            border-radius: 0px;
+            box-shadow: none;
+            border: 1px solid var(--border-colour);
         }
 
         .methodology-content h2 {
             font-size: 2.5rem;
-            color: var(--highlight-colour);
+            color: var(--primary-colour);
             margin-bottom: 25px;
             font-weight: 600;
+            letter-spacing: -1px;
         }
 
         .methodology-content p {
@@ -483,17 +507,21 @@
         }
 
         .methodology-feature {
-            background: var(--primary-colour);
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid var(--highlight-colour);
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 0px;
+            border-left: 3px solid var(--accent-colour);
+            border-top: 1px solid var(--border-colour);
+            border-right: 1px solid var(--border-colour);
+            border-bottom: 1px solid var(--border-colour);
         }
 
         .methodology-feature h4 {
-            color: var(--highlight-colour);
+            color: var(--primary-colour);
             font-size: 1.2rem;
             margin-bottom: 10px;
             font-weight: 600;
+            letter-spacing: -0.3px;
         }
 
         .methodology-feature p {
@@ -503,8 +531,8 @@
 
         /* IP Section */
         .ip-section {
-            background: #f0f7ff;
-            padding: 60px 20px;
+            background: var(--secondary-colour);
+            padding: 80px 20px;
             border-top: 3px solid var(--accent-colour);
             border-bottom: 3px solid var(--accent-colour);
         }
@@ -516,10 +544,11 @@
 
         .ip-content h2 {
             font-size: 2rem;
-            color: var(--highlight-colour);
+            color: var(--primary-colour);
             margin-bottom: 20px;
             font-weight: 600;
             text-align: centre;
+            letter-spacing: -0.5px;
         }
 
         .ip-content p {
@@ -540,9 +569,10 @@
         /* Footer */
         footer {
             background: var(--primary-colour);
-            padding: 60px 20px;
+            color: var(--secondary-colour);
+            padding: 80px 20px;
             text-align: centre;
-            border-top: 2px solid var(--border-colour);
+            border-top: none;
         }
 
         footer p {
@@ -552,15 +582,15 @@
         }
 
         footer a {
-            color: var(--highlight-colour);
+            color: var(--accent-colour);
             text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s;
+            font-weight: 500;
+            transition: all 0.3s;
         }
 
         footer a:hover {
-            opacity: 0.8;
-            text-decoration: underline;
+            color: var(--secondary-colour);
+            text-decoration: none;
         }
 
         /* Mobile Responsiveness */
