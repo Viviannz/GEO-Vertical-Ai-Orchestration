@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DentalAiMarketer: A 6-agent AI marketing system for dental practices, from ideal patient profiling to multi-platform campaign execution with automated content generation.">
+    <meta name="keywords" content="DentalAiMarketer, Dental Marketing AI, Patient Acquisition, Dental Practice Growth, Marketing Automation, Dental Campaigns, Vertical AI">
+    <meta name="author" content="Dr. Vivian Nzegbulem, Ai4this">
+    <meta property="og:title" content="DentalAiMarketer - AI-Powered Dental Practice Marketing">
+    <meta property="og:description" content="6-agent system to grow your dental practice with smart, personalised AI-powered marketing">
+    <meta property="og:type" content="article">
+    <title>DentalAiMarketer - AI-Powered Dental Practice Marketing | Dr. Vivian Nzegbulem</title>
+
+    <style>
+        :root {
+            --primary-colour: #f8f9fa;
+            --secondary-colour: #e9ecef;
+            --accent-colour: #0066cc;
+            --highlight-colour: #0052a3;
+            --text-colour: #212529;
+            --bg-colour: #ffffff;
+            --card-bg: #f8f9fa;
+            --border-colour: #0066cc;
+            --success-colour: #28a745;
+            --dental-accent: #00b4d8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-colour);
+            background-color: var(--bg-colour);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #caf0f8 0%, #90e0ef 100%);
+            padding: 60px 20px;
+            text-align: centre;
+            border-bottom: 3px solid var(--dental-accent);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 15px;
+            color: var(--highlight-colour);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--text-colour);
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--accent-colour);
+            font-style: italic;
+        }
+
+        nav {
+            background: var(--card-bg);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: centre;
+            border: 1px solid var(--border-colour);
+        }
+
+        nav a {
+            color: var(--accent-colour);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--highlight-colour);
+            text-decoration: underline;
+        }
+
+        section {
+            margin: 50px 0;
+        }
+
+        .intro-box {
+            background: #e3f8ff;
+            padding: 40px;
+            border-radius: 8px;
+            border-left: 5px solid var(--dental-accent);
+            margin: 30px 0;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin: 40px 0 25px 0;
+            color: var(--highlight-colour);
+            border-bottom: 2px solid var(--border-colour);
+            padding-bottom: 12px;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin: 30px 0 20px 0;
+            color: var(--accent-colour);
+        }
+
+        h4 {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            margin: 20px 0 15px 0;
+            color: var(--highlight-colour);
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            margin: 20px 0 20px 35px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .agent-card {
+            background: var(--card-bg);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--dental-accent);
+            border: 1px solid var(--border-colour);
+        }
+
+        .agent-card h3 {
+            margin-top: 0;
+            color: var(--highlight-colour);
+            font-size: 1.5rem;
+        }
+
+        .agent-card h4 {
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        .code-block {
+            background: var(--secondary-colour);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--dental-accent);
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+        }
+
+        .highlight-box {
+            background: #e3f8ff;
+            padding: 25px;
+            border-radius: 6px;
+            border: 1px solid var(--dental-accent);
+            margin: 25px 0;
+        }
+
+        .success-box {
+            background: #d4edda;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 5px solid var(--success-colour);
+            margin: 25px 0;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .mini-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-colour);
+            transition: transform 0.2s, border-colour 0.2s;
+        }
+
+        .mini-card:hover {
+            transform: translateY(-3px);
+            border-colour: var(--dental-accent);
+        }
+
+        .mini-card h4 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: var(--dental-accent);
+        }
+
+        .flow-diagram {
+            background: var(--secondary-colour);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border: 2px solid var(--dental-accent);
+        }
+
+        .flow-step {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--dental-accent);
+        }
+
+        .flow-arrow {
+            color: var(--dental-accent);
+            font-size: 1.8rem;
+            margin: 10px 0;
+            text-align: centre;
+            font-weight: bold;
+        }
+
+        .sequence-banner {
+            background: linear-gradient(135deg, var(--dental-accent) 0%, #0077b6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: centre;
+            margin: 30px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .next-steps {
+            background: #e3f8ff;
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid var(--dental-accent);
+            margin: 25px 0;
+        }
+
+        .next-steps h4 {
+            margin-top: 0;
+            color: var(--dental-accent);
+        }
+
+        .next-steps ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .next-steps li {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid var(--dental-accent);
+            font-family: 'Courier New', monospace;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            text-align: centre;
+            border-top: 2px solid var(--border-colour);
+            background: var(--primary-colour);
+        }
+
+        footer a {
+            color: var(--highlight-colour);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 40px 15px;
+            }
+
+            .agent-card, .intro-box {
+                padding: 20px;
+            }
+
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DentalAiMarketer</h1>
+        <p class="subtitle">AI-Powered Dental Practice Marketing System</p>
+        <p class="tagline">From ideal patient profiling to multi-platform campaign execution</p>
+    </header>
+
+    <nav>
+        <a href="index.html">← Back to Vertical AI Orchestration</a>
+    </nav>
+
+    <main class="container">
+        <!-- INTRODUCTION -->
+        <section>
+            <div class="intro-box">
+                <h2 style="margin-top: 0; border: none; padding: 0;">System Overview</h2>
+                <p>
+                    <strong>DentalAiMarketer</strong> is a comprehensive AI marketing system designed specifically for dental practices. It guides you from identifying your ideal patients to launching and managing multi-platform campaigns—even if you're starting from scratch.
+                </p>
+                <p>
+                    The system consists of six specialised agents plus a master orchestrator, each focused on a key aspect of your dental marketing journey: patient profiling, audience segmentation, funnel design, content generation, platform setup, and social media formatting.
+                </p>
+            </div>
+        </section>
+
+        <!-- PURPOSE -->
+        <section>
+            <h2>Purpose</h2>
+            <p>
+                Help dental practices attract high-value patients and fill appointment books with smart, personalised AI-powered marketing that is:
+            </p>
+            <ul>
+                <li><strong>Simple:</strong> Easy to understand and implement, even without marketing expertise</li>
+                <li><strong>Effective:</strong> Based on proven patient acquisition strategies tailored to dental services</li>
+                <li><strong>Automated:</strong> Generate campaigns, content, and assets with minimal manual work</li>
+                <li><strong>Multi-Platform:</strong> Deploy across Meta Ads, WhatsApp, Instagram, LinkedIn, and more</li>
+            </ul>
+        </section>
+
+        <!-- AGENT SEQUENCE -->
+        <section>
+            <h2>Agent Sequence</h2>
+
+            <div class="sequence-banner">
+                Master Agent → ICPBuilder → MicroAudienceSegmenter → FunnelCreator → CampaignAssetGenerator → ToolNavigator → SocialFormatter
+            </div>
+
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">1. Master Agent (DentalAiMarketer)</h4>
+                    <p>Welcomes users and routes to appropriate specialist agents based on needs</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">2. ICPBuilder</h4>
+                    <p>Define ideal patient profile with pain points, goals, and preferences</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">3. MicroAudienceSegmenter</h4>
+                    <p>Break profile into 3–5 focused micro-audiences for targeted campaigns</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">4. FunnelCreator</h4>
+                    <p>Design simple, educational funnels matched to each segment</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">5. CampaignAssetGenerator</h4>
+                    <p>Auto-generate ad copy, emails, video scripts, and landing pages</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">6. ToolNavigator</h4>
+                    <p>Help choose and set up platforms (Meta Ads, WhatsApp, Mailchimp)</p>
+                </div>
+                <div class="flow-arrow">↓</div>
+
+                <div class="flow-step">
+                    <h4 style="margin-top: 0;">7. SocialFormatter</h4>
+                    <p>Repackage content into scroll-stopping social posts (Instagram, LinkedIn, YouTube Shorts)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AGENT OVERVIEW GRID -->
+        <section>
+            <h2>6 Specialised Agents + Master Orchestrator</h2>
+
+            <div class="agent-grid">
+                <div class="mini-card">
+                    <h4>Master Agent</h4>
+                    <p>Routes users and orchestrates the marketing journey</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>ICPBuilder</h4>
+                    <p>Define ideal patient profile and motivations</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>MicroAudienceSegmenter</h4>
+                    <p>Create focused micro-audiences for targeting</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>FunnelCreator</h4>
+                    <p>Design educational marketing funnels</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>CampaignAssetGenerator</h4>
+                    <p>Generate complete campaign materials</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>ToolNavigator</h4>
+                    <p>Platform selection and setup guidance</p>
+                </div>
+
+                <div class="mini-card">
+                    <h4>SocialFormatter</h4>
+                    <p>Transform content for social platforms</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETAILED AGENT SPECIFICATIONS -->
+        <section>
+            <h2>Detailed Agent Specifications</h2>
+
+            <!-- MASTER AGENT -->
+            <div class="agent-card">
+                <h3>DentalAiMarketer Master Agent</h3>
+                <h4>Purpose</h4>
+                <p>Welcome users and route them to the appropriate specialist agent based on their needs.</p>
+
+                <h4>Capabilities</h4>
+                <ul>
+                    <li>Understand user needs and current marketing stage</li>
+                    <li>Route to appropriate specialist agent</li>
+                    <li>Generate downloadable PDFs from content</li>
+                    <li>Create GPT-powered images or concept visuals</li>
+                    <li>Perform Google searches for supporting material</li>
+                </ul>
+
+                <h4>Routing Logic</h4>
+                <ul>
+                    <li>"I'm not sure who to target" → <strong>ICPBuilder</strong></li>
+                    <li>"Help me write a video ad" → <strong>CampaignAssetGenerator</strong></li>
+                    <li>"Don't know how to launch campaign" → <strong>ToolNavigator</strong></li>
+                    <li>"Repurpose email for Instagram" → <strong>SocialFormatter</strong></li>
+                </ul>
+
+                <div class="next-steps">
+                    <h4>Next Step Suggestions (copy/paste options)</h4>
+                    <ul>
+                        <li>▶ Run FunnelCreator Agent</li>
+                        <li>▶ Run ICPBuilder Agent</li>
+                        <li>▶ Run SocialFormatter Agent</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Prefix:</strong> All replies start with <code>Running DentalAiMarketer Master Agent...</code></p>
+            </div>
+
+            <!-- ICPBUILDER -->
+            <div class="agent-card">
+                <h3>1. ICPBuilder</h3>
+                <h4>Purpose</h4>
+                <p>Define an ideal dental patient profile with clear pain points, motivations, objections, and communication preferences.</p>
+
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Dentist's location (optional)</li>
+                    <li>Services offered (e.g., cosmetic dentistry, orthodontics, general care)</li>
+                    <li>Target demographic (age, income, behaviours)</li>
+                </ul>
+
+                <h4>Outputs</h4>
+                <ul>
+                    <li><strong>Catchy profile name:</strong> Memorable identifier (e.g., "Smile-Conscious Professionals")</li>
+                    <li><strong>Key pain points:</strong> What frustrates or worries these patients</li>
+                    <li><strong>Goals and decision drivers:</strong> What they want to achieve</li>
+                    <li><strong>Common objections:</strong> Barriers to booking (cost, time, fear)</li>
+                    <li><strong>Preferred communication channels:</strong> Where they consume information</li>
+                </ul>
+
+                <div class="next-steps">
+                    <h4>Next Step Suggestions (copy/paste options)</h4>
+                    <ul>
+                        <li>▶ Run MicroAudienceSegmenter Agent</li>
+                        <li>▶ Run FunnelCreator Agent</li>
+                        <li>▶ Run CampaignAssetGenerator Agent</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Prefix:</strong> <code>Running ICPBuilder Agent...</code></p>
+            </div>
+
+            <!-- MICROAUDIENCESEGMENTER -->
+            <div class="agent-card">
+                <h3>2. MicroAudienceSegmenter</h3>
+                <h4>Purpose</h4>
+                <p>Take the ICP output and break it into 3–5 actionable micro-audiences for more precise targeting.</p>
+
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Full ICP output from ICPBuilder</li>
+                </ul>
+
+                <h4>Outputs (for each micro-audience)</h4>
+                <ul>
+                    <li><strong>Segment name:</strong> Clear identifier (e.g., "Young Parents Seeking Family Dentist")</li>
+                    <li><strong>Key behaviour signal:</strong> Observable trait or action</li>
+                    <li><strong>Core pain or motivator:</strong> Primary driver for this segment</li>
+                    <li><strong>Ideal message hook:</strong> Opening line or value proposition</li>
+                </ul>
+
+                <div class="success-box">
+                    <strong>Example Segments:</strong>
+                    <ul style="margin-top: 10px; margin-bottom: 0;">
+                        <li>Anxious First-Timers (fear of pain)</li>
+                        <li>Cosmetic Enhancement Seekers (smile transformation)</li>
+                        <li>Busy Professionals (convenience, speed)</li>
+                        <li>Parents of Young Children (family-friendly, education)</li>
+                    </ul>
+                </div>
+
+                <div class="next-steps">
+                    <h4>Next Step Suggestions (copy/paste options)</h4>
+                    <ul>
+                        <li>▶ Run FunnelCreator Agent</li>
+                        <li>▶ Run CampaignAssetGenerator Agent</li>
+                        <li>▶ Run ToolNavigator Agent</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Prefix:</strong> <code>Running MicroAudienceSegmenter...</code></p>
+            </div>
+
+            <!-- FUNNELCREATOR -->
+            <div class="agent-card">
+                <h3>3. FunnelCreator</h3>
+                <h4>Purpose</h4>
+                <p>Design a simple, educational funnel that matches a selected micro-audience's behaviour and digital habits.</p>
+
+                <h4>Inputs</h4>
+                <ul>
+                    <li>One selected micro-audience from segmenter</li>
+                </ul>
+
+                <h4>Outputs</h4>
+                <ul>
+                    <li><strong>Funnel stages:</strong>
+                        <ul>
+                            <li><em>Ad:</em> Attention-grabbing initial touchpoint</li>
+                            <li><em>Landing:</em> Educational content or offer</li>
+                            <li><em>Action:</em> Booking, call, or consultation request</li>
+                        </ul>
+                    </li>
+                    <li><strong>Platform suggestions:</strong> Where to run the funnel (Meta Ads, WhatsApp, Instagram, email)</li>
+                    <li><strong>Call-to-action ideas:</strong> Specific conversion prompts</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4 style="margin-top: 0;">Example Funnel: Cosmetic Enhancement Seekers</h4>
+                    <p><strong>Ad:</strong> Instagram carousel showing before/after smile transformations</p>
+                    <p><strong>Landing:</strong> Quick quiz: "What's your dream smile?" → personalised treatment recommendation</p>
+                    <p><strong>Action:</strong> "Book free consultation" button with calendar link</p>
+                </div>
+
+                <div class="next-steps">
+                    <h4>Next Step Suggestions (copy/paste options)</h4>
+                    <ul>
+                        <li>▶ Run CampaignAssetGenerator Agent</li>
+                        <li>▶ Run ToolNavigator Agent</li>
+                        <li>▶ Run SocialFormatter Agent</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Prefix:</strong> <code>Running FunnelCreator...</code></p>
+            </div>
+
+            <!-- CAMPAIGNASSETGENERATOR -->
+            <div class="agent-card">
+                <h3>4. CampaignAssetGenerator</h3>
+                <h4>Purpose</h4>
+                <p>Auto-generate compelling marketing materials based on a funnel design.</p>
+
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Funnel overview (stages, channel, target audience)</li>
+                </ul>
+
+                <h4>Outputs</h4>
+                <ul>
+                    <li><strong>Ad copy:</strong> Headline + body text for paid ads</li>
+                    <li><strong>Email follow-up:</strong> Nurture sequence (typically 3 emails)</li>
+                    <li><strong>WhatsApp/SMS message:</strong> Short, conversational reminder or confirmation</li>
+                    <li><strong>Landing page wireframe:</strong> Structure outline with sections and copy</li>
+                    <li><strong>30-second video script:</strong> Visual storytelling for Reels, Shorts, or TikTok</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4 style="margin-top: 0;">Sample Output: Video Script for Anxious First-Timers</h4>
+                    <div class="code-block">[Opening shot: Calm waiting room, soft music]
+
+Voiceover: "First dental visit in years? We get it. The anxiety is real."
+
+[Close-up: Friendly dentist smiling]
+
+"At [Practice Name], we specialise in gentle care for nervous patients."
+
+[Show: Sedation options, step-by-step explanation]
+
+"Every step explained. No surprises. No judgement."
+
+[Text overlay: "Book your comfort consultation"]
+
+"Ready to smile again? Link in bio."</div>
+                </div>
+
+                <div class="next-steps">
+                    <h4>Next Step Suggestions (copy/paste options)</h4>
+                    <ul>
+                        <li>▶ Run ToolNavigator Agent</li>
+                        <li>▶ Run SocialFormatter Agent</li>
+                        <li>▶ Run FunnelCreator Agent</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Prefix:</strong> <code>Running CampaignAssetGenerator...</code></p>
+            </div>
+
+            <!-- TOOLNAVIGATOR -->
+            <div class="agent-card">
+                <h3>5. ToolNavigator</h3>
+                <h4>Purpose</h4>
+                <p>Help users pick and launch campaigns on platforms like Meta Ads, WhatsApp, Mailchimp, Instagram, and more.</p>
+
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Chosen platform (e.g., Meta Ads Manager, WhatsApp Business)</li>
+                    <li>Campaign goal (awareness, lead generation, bookings)</li>
+                    <li>Target audience (from previous agents)</li>
+                </ul>
+
+                <h4>Outputs</h4>
+                <ul>
+                    <li><strong>Step-by-step setup:</strong> Platform-specific instructions (account creation, campaign structure, ad placement)</li>
+                    <li><strong>Optimisation tips:</strong> Bidding strategies, audience targeting, A/B testing guidance</li>
+                    <li><strong>Multilingual considerations:</strong> If practice serves diverse communities</li>
+                </ul>
+
+                <div class="success-box">
+                    <h4 style="margin-top: 0;">Platform Coverage</h4>
+                    <ul style="margin-bottom: 0;">
+                        <li><strong>Meta Ads (Facebook/Instagram):</strong> Audience Builder, campaign objectives, pixel tracking</li>
+                        <li><strong>WhatsApp Business:</strong> Automated greetings, quick replies, appointment reminders</li>
+                        <li><strong>Mailchimp/Email:</strong> List segmentation, drip campaigns, open rate optimisation</li>
+                        <li><strong>Google Ads:</strong> Local service ads, keyword targeting for dental searches</li>
+                    </ul>
+                </div>
+
+                <div class="next-steps">
+                    <h4>Next Step Suggestions (copy/paste options)</h4>
+                    <ul>
+                        <li>▶ Run SocialFormatter Agent</li>
+                        <li>▶ Run CampaignAssetGenerator Agent</li>
+                        <li>▶ Run FunnelCreator Agent</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Prefix:</strong> <code>Running ToolNavigator...</code></p>
+            </div>
+
+            <!-- SOCIALFORMATTER -->
+            <div class="agent-card">
+                <h3>6. SocialFormatter</h3>
+                <h4>Purpose</h4>
+                <p>Reformat campaign content into platform-specific social media posts that stop the scroll.</p>
+
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Campaign content (ad copy, email, video script)</li>
+                    <li>Target platform(s) (Instagram, LinkedIn, Twitter/X, YouTube Shorts, TikTok)</li>
+                    <li>Optional: tone preference, CTA style, content length</li>
+                </ul>
+
+                <h4>Outputs (for each platform)</h4>
+                <ul>
+                    <li><strong>Format type:</strong> Reel caption, Tweet thread, LinkedIn article, YouTube description</li>
+                    <li><strong>Transformed content:</strong> Adapted for platform conventions and character limits</li>
+                    <li><strong>Hashtags:</strong> Relevant dental marketing tags (#DentalCare, #SmileMakeover, etc.)</li>
+                    <li><strong>CTA suggestions:</strong> Platform-appropriate calls-to-action</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4 style="margin-top: 0;">Example: Email → Instagram Reel Caption</h4>
+                    <p><strong>Original Email Subject:</strong> "5 Reasons Your Teeth Hurt (And What To Do About It)"</p>
+                    <p><strong>Instagram Reel Caption:</strong></p>
+                    <div class="code-block">🦷 Tooth pain? Here's what your body is trying to tell you:
+
+1️⃣ Cavity alert 🚨
+2️⃣ Gum disease sneaking in
+3️⃣ Enamel wearing down
+4️⃣ Old filling cracking
+5️⃣ Tooth grinding at night
+
+Don't ignore the signs. Book a check-up before it gets worse. 👇
+
+📞 Link in bio or DM "CHECKUP" to book
+
+#DentalHealth #ToothPain #DentistNearMe #HealthySmile #DentalCare</div>
+                </div>
+
+                <div class="next-steps">
+                    <h4>Next Step Suggestions (copy/paste options)</h4>
+                    <ul>
+                        <li>▶ Run ICPBuilder Agent</li>
+                        <li>▶ Run MicroAudienceSegmenter Agent</li>
+                        <li>▶ Run FunnelCreator Agent</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 15px;"><strong>Prefix:</strong> <code>Running SocialFormatter...</code></p>
+                <p><strong>Closing Note:</strong> Once complete, suggest downloading content, testing live, or starting a new campaign cycle.</p>
+            </div>
+        </section>
+
+        <!-- USER GUIDE -->
+        <section>
+            <h2>User Guide</h2>
+
+            <h3>How to Use DentalAiMarketer</h3>
+
+            <h4>Step 1: Start with the Master Agent</h4>
+            <p>Tell the system what you need help with:</p>
+            <ul>
+                <li>"I'm not sure who I should be targeting"</li>
+                <li>"Can you help me write a video ad?"</li>
+                <li>"I've got a campaign but don't know how to launch it"</li>
+                <li>"Can you repurpose my email for Instagram?"</li>
+            </ul>
+
+            <h4>Step 2: Follow the Agent Sequence</h4>
+            <p>The typical flow for a complete campaign:</p>
+            <ol>
+                <li><strong>ICPBuilder:</strong> Define your ideal patient</li>
+                <li><strong>MicroAudienceSegmenter:</strong> Break into 3–5 targeted segments</li>
+                <li><strong>FunnelCreator:</strong> Design a funnel for one segment</li>
+                <li><strong>CampaignAssetGenerator:</strong> Generate all marketing materials</li>
+                <li><strong>ToolNavigator:</strong> Set up and launch on chosen platform</li>
+                <li><strong>SocialFormatter:</strong> Repurpose content for social media</li>
+            </ol>
+
+            <h4>Step 3: Use Next Step Suggestions</h4>
+            <p>Each agent provides copy/paste options for the next logical step. Simply copy and paste the command to continue.</p>
+
+            <h3>Example Journey: Cosmetic Dentistry Campaign</h3>
+
+            <div class="flow-diagram" style="text-align: left; padding: 30px;">
+                <h4 style="margin-top: 0;">Week 1: Define Target</h4>
+                <ul>
+                    <li><strong>ICPBuilder:</strong> Create "Smile-Conscious Professionals" profile</li>
+                    <li><strong>MicroAudienceSegmenter:</strong> Split into 3 segments: Wedding planners, Job seekers, Social media influencers</li>
+                </ul>
+
+                <h4>Week 2: Design Campaign</h4>
+                <ul>
+                    <li><strong>FunnelCreator:</strong> Build Instagram Ad → Quiz Landing Page → Booking CTA funnel for wedding planners</li>
+                    <li><strong>CampaignAssetGenerator:</strong> Generate ad copy, email sequence, video script, landing page outline</li>
+                </ul>
+
+                <h4>Week 3: Launch & Distribute</h4>
+                <ul>
+                    <li><strong>ToolNavigator:</strong> Set up Meta Ads campaign with Wedding Planner targeting</li>
+                    <li><strong>SocialFormatter:</strong> Transform ad into Instagram Reel, LinkedIn post, and YouTube Short</li>
+                </ul>
+
+                <h4>Results</h4>
+                <ul>
+                    <li>Complete multi-platform campaign in 3 weeks</li>
+                    <li>All assets ready for deployment</li>
+                    <li>Consistent messaging across channels</li>
+                </ul>
+            </div>
+
+            <h3>Tips for Success</h3>
+            <ul>
+                <li><strong>Start specific:</strong> Better to target one well-defined micro-audience than try to reach everyone</li>
+                <li><strong>Test and iterate:</strong> Run campaigns for 2–4 weeks, measure results, refine based on data</li>
+                <li><strong>Leverage seasonal opportunities:</strong> Back-to-school, wedding season, New Year's resolutions</li>
+                <li><strong>Build patient education:</strong> Use content to address fears, explain procedures, showcase results</li>
+            </ul>
+        </section>
+
+        <!-- DEPLOYMENT OPTIONS -->
+        <section>
+            <h2>Deployment Options</h2>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">Individual Dental Practice</h4>
+                <p>Use as your in-house marketing department. Generate campaigns on-demand for specific services or seasonal promotions.</p>
+            </div>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">Dental Marketing Agency</h4>
+                <p>Deploy for multiple dental practice clients. Customise ICPs and campaigns per practice while maintaining consistent methodology.</p>
+            </div>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">Dental Network/Franchise</h4>
+                <p>Provide centralised marketing toolkit for all locations. Allow local customisation while ensuring brand consistency.</p>
+            </div>
+
+            <div class="mini-card">
+                <h4 style="margin-top: 0;">Pickaxe Studio Integration</h4>
+                <p>System is designed to run on Pickaxe Studio platform with individual agent tools accessible via web links for easy sharing and team collaboration.</p>
+            </div>
+        </section>
+
+        <!-- IP PROTECTION -->
+        <section style="border: 2px solid var(--accent-colour); background: #e3f8ff; padding: 40px; border-radius: 8px;">
+            <h2 style="margin-top: 0;">Intellectual Property & Licensing</h2>
+
+            <p>
+                <strong>DentalAiMarketer</strong> is a proprietary implementation of the Vertical AI Orchestration methodology, developed by Dr. Vivian Nzegbulem. All content, including the 6-agent framework, dental-specific workflows, and campaign templates, is protected by copyright.
+            </p>
+
+            <h3>Copyright Notice</h3>
+            <p>© 2025 Dr. Vivian Nzegbulem. All rights reserved.</p>
+
+            <h3>Terms of Use</h3>
+            <ul>
+                <li><strong>Educational Use:</strong> You may study this system for educational purposes with proper attribution.</li>
+                <li><strong>Citation:</strong> "DentalAiMarketer, Dr. Vivian Nzegbulem, Ai4this, 2025"</li>
+                <li><strong>Commercial Use:</strong> Any commercial implementation, adaptation, or use in dental marketing services requires explicit written permission.</li>
+                <li><strong>No Derivatives:</strong> You may not create derivative works without authorisation.</li>
+                <li><strong>Consultation Available:</strong> For licensing, implementation support, or consulting, contact via LinkedIn.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <strong>DentalAiMarketer</strong> – A Vertical AI Orchestration System<br>
+            Dr. Vivian Nzegbulem | Ai4this<br>
+            <a href="https://www.linkedin.com/in/dr-vivian-nzegbulem-58ab3568/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br>
+            <br>
+            © 2025 Dr. Vivian Nzegbulem. All rights reserved.<br>
+            <small style="font-size: 0.9rem; opacity: 0.8;">This system is proprietary. Unauthorised commercial use is prohibited.</small>
+        </p>
+        <p style="margin-top: 20px;">
+            <a href="index.html">← Back to Vertical AI Orchestration</a>
+        </p>
+    </footer>
+</body>
+</html>
