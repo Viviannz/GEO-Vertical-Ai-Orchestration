@@ -67,6 +67,73 @@
             padding: 20px;
         }
 
+
+        /* Navigation */
+        nav {
+            background: var(--primary-colour);
+            border-bottom: 2px solid var(--accent-colour);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: centre;
+            padding: 20px;
+        }
+
+        nav .logo {
+            color: var(--secondary-colour);
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav .logo:hover {
+            color: var(--accent-colour);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: var(--secondary-colour);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-colour);
+        }
+
+        @media (max-width: 768px) {
+            nav .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: centre;
+                gap: 15px;
+            }
+        }
+
         header {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             padding: 60px 20px;
@@ -334,6 +401,16 @@
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Vertical AI Orchestration</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="https://www.linkedin.com/in/dr-vivian-nzegbulem-58ab3568/" target="_blank">LinkedIn</a></li>
+            </ul>
+        </div>
+    </nav>
     <header>
         <h1>Startup OS 2.0</h1>
         <p class="subtitle">AI Chief of Staff for Entrepreneurs</p>
@@ -1031,7 +1108,7 @@ Mitigation: Run parallel SMB pilot to generate cashflow while enterprise deals m
             <a href="https://www.linkedin.com/in/dr-vivian-nzegbulem-58ab3568/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br>
             <br>
             © 2025 Dr. Vivian Nzegbulem. All rights reserved.<br>
-            <small style="font-size: 0.9rem; opacity: 0.8;">This system is proprietary. Unauthorised commercial use is prohibited.</small>
+            <small style="font-size: 0.9rem; opacity: 0.8;">This system is proprietary. Unauthorised commercial use is prohibited.<br><a href="index.html">Portfolio</a> | <a href="methodology.html">Methodology</a> | <a href="innovatetechos.html">InnovateTechOS</a> | <a href="startup-os.html">Startup OS</a> | <a href="upwork-clientstream.html">Upwork ClientStream</a> | <a href="rolematch-agentify.html">RoleMatch &amp; Agentify</a> | <a href="dentalaimarketer.html">DentalAiMarketer</a> | <a href="content-monetisor.html">Content Monetisor</a></small>
         </p>
         <p style="margin-top: 20px;">
             <a href="index.html">← Back to Vertical AI Orchestration</a>
