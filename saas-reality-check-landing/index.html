@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Validate your AI startup idea before writing code. 5-agent system that prevents GPT wrapper failures. BYOK pricing - pay only for what you use.">
+    <meta name="keywords" content="SaaS validation, startup validation, AI startup, GPT wrapper, moat detection, market validation, BYOK">
+    <meta name="author" content="Dr. Vivian Nzegbulem">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SaaS Reality Check - Validate Your AI Startup">
+    <meta property="og:description" content="5-agent validation system. Avoid the GPT wrapper graveyard. $79 one-time + BYOK.">
+    <meta property="og:image" content="https://verticalsystems.xyz/og-image.png">
+
+    <title>SaaS Reality Check - Validate Your AI Startup Before Building</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --danger: #dc3545;
+            --danger-dark: #c82333;
+            --danger-light: #ffe5e8;
+            --orange: #fd7e14;
+            --green: #28a745;
+            --text: #212529;
+            --gray: #6c757d;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--danger-light) 0%, #fff5e6 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--danger);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: var(--danger);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--text);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--danger);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .cta-primary:hover {
+            background: var(--danger-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: white;
+            color: var(--danger);
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 2px solid var(--danger);
+            transition: all 0.3s;
+            margin-left: 15px;
+        }
+
+        .cta-secondary:hover {
+            background: var(--danger-light);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .problem h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            color: var(--danger-dark);
+            margin-bottom: 50px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .problem-card {
+            background: var(--danger-light);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--danger);
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            color: var(--danger-dark);
+            margin-bottom: 15px;
+        }
+
+        .problem-card p {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+        }
+
+        .solution h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            color: var(--danger-dark);
+            margin-bottom: 20px;
+        }
+
+        .solution-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .agent-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--danger);
+        }
+
+        .agent-card h3 {
+            font-size: 1.4rem;
+            color: var(--danger);
+            margin-bottom: 10px;
+        }
+
+        .agent-card .purpose {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .agent-card p {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .pricing h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            color: var(--danger-dark);
+            margin-bottom: 50px;
+        }
+
+        .pricing-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, var(--danger-light) 0%, white 100%);
+            border: 3px solid var(--danger);
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--orange);
+            color: white;
+            padding: 8px 50px;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            color: var(--danger-dark);
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--danger);
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .price-features {
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .price-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.1rem;
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        .byok-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .byok-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .byok-box p {
+            color: #856404;
+            font-size: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: var(--light);
+        }
+
+        .features h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            color: var(--danger-dark);
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            color: var(--danger-dark);
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: var(--gray);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .faq h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            color: var(--danger-dark);
+            margin-bottom: 50px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--light);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--danger);
+        }
+
+        .faq-item h3 {
+            color: var(--danger-dark);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--danger) 0%, var(--orange) 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-white {
+            background: white;
+            color: var(--danger);
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .cta-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .cta-secondary {
+                margin-left: 0;
+                margin-top: 15px;
+                display: block;
+            }
+
+            .hero {
+                padding: 50px 20px;
+            }
+
+            .pricing-card {
+                padding: 30px 20px;
+            }
+
+            .price {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>SaaS Reality Check</h1>
+            <p class="subtitle">Validate Your AI Startup Before Writing Code</p>
+            <p class="tagline">Avoid the GPT wrapper graveyard</p>
+            <a href="#pricing" class="cta-primary">Get Started - $79</a>
+            <a href="#solution" class="cta-secondary">See How It Works</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>Are You About to Waste 6 Months Building Something Nobody Wants?</h2>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>🪦 GPT Wrapper Graveyard</h3>
+                    <p>Hundreds of AI tools launched in 2023-2024 are now dead. Most were just thin wrappers over ChatGPT with no moat, no distribution, no unique value.</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>⚠️ No Validation = No Traction</h3>
+                    <p>You're excited about your idea. But have you validated the problem is real? The market isn't saturated? You have leverage to acquire customers?</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>💸 Opportunity Cost</h3>
+                    <p>6 months building. $50K in costs. Zero revenue. Meanwhile, you could have validated in 30 minutes and pivoted to something that actually works.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding: 40px 0;">
+                <p style="font-size: 1.3rem; color: var(--danger); font-weight: 600;">
+                    You need honest, risk-first validation BEFORE you start building.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <h2>Introducing the 5-Agent Validation System</h2>
+            <p class="solution-intro">
+                Five specialized AI agents that analyze your startup idea through a risk-first lens. No fake encouragement. No vibe coding. Just brutal honesty.
+            </p>
+
+            <div class="agents-grid">
+                <div class="agent-card">
+                    <h3>1. Clara – StoryMapper</h3>
+                    <p class="purpose">Problem Validation</p>
+                    <p>Maps your idea to a pain → goal arc. Validates if the problem is sharp and urgent enough to build a business around.</p>
+                </div>
+
+                <div class="agent-card">
+                    <h3>2. Ethan – MoatDetector</h3>
+                    <p class="purpose">Clone Risk Assessment</p>
+                    <p>Assesses your moat, defensibility, and cloneability risk. Flags GPT wrapper dangers and API dependency issues.</p>
+                </div>
+
+                <div class="agent-card">
+                    <h3>3. Maya – MarketRealityCheck</h3>
+                    <p class="purpose">Market Analysis</p>
+                    <p>Analyzes market saturation, timing, and competitive landscape. Detects hype traps and overcrowded categories.</p>
+                </div>
+
+                <div class="agent-card">
+                    <h3>4. Isaac – LeverageStack</h3>
+                    <p class="purpose">Founder Advantage</p>
+                    <p>Evaluates your audience, distribution, and leverage. Can you actually reach customers without burning cash on ads?</p>
+                </div>
+
+                <div class="agent-card">
+                    <h3>5. Leo – BuildOrNot</h3>
+                    <p class="purpose">Final Verdict</p>
+                    <p>Synthesizes all analysis into a clear decision: 🟢 Proceed / 🟡 Validate / 🔴 Delay. Plus investor-style summary and risk assessment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why This Works</h2>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🔐</div>
+                    <h3>BYOK Model</h3>
+                    <p>Bring your own Claude API key. Your data stays private. Pay only $0.01-0.03 per validation.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>30-Minute Validation</h3>
+                    <p>Get your full assessment in under 30 minutes. Faster than a coffee meeting with an advisor.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Real-Time Cost Tracking</h3>
+                    <p>See exactly what you're paying for each agent call. Full transparency, no surprises.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Export Reports</h3>
+                    <p>Save and share your validation report. Use it for investor pitches or team alignment.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>No Backend Required</h3>
+                    <p>Runs entirely in your browser. No server costs, no data storage, no privacy concerns.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Unlimited Validations</h3>
+                    <p>One-time purchase. Run unlimited validations on all your startup ideas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple, Honest Pricing</h2>
+
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <div class="pricing-badge">BYOK</div>
+                    <h3>SaaS Reality Check</h3>
+                    <div class="price">$79</div>
+                    <p class="price-note">One-time payment. Lifetime access.</p>
+
+                    <ul class="price-features">
+                        <li>✅ Full 5-agent validation system</li>
+                        <li>✅ Unlimited validations</li>
+                        <li>✅ Export reports (PDF/Print)</li>
+                        <li>✅ Session persistence</li>
+                        <li>✅ Real-time cost tracking</li>
+                        <li>✅ Lifetime updates</li>
+                        <li>✅ No recurring fees</li>
+                    </ul>
+
+                    <div class="byok-box">
+                        <h4>💡 BYOK: Bring Your Own Key</h4>
+                        <p>You provide your own Claude API key (~$0.01-0.03 per validation). Your key stays in your browser and never touches our servers. Full privacy and control.</p>
+                    </div>
+
+                    <a href="mailto:contact@verticalsystems.xyz?subject=SaaS Reality Check Purchase" class="cta-primary" style="margin-top: 20px;">
+                        Get Lifetime Access - $79
+                    </a>
+
+                    <p style="margin-top: 20px; color: var(--gray); font-size: 0.9rem;">
+                        Questions? <a href="mailto:contact@verticalsystems.xyz" style="color: var(--danger);">Email us</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3>What is BYOK and why?</h3>
+                    <p>BYOK means "Bring Your Own Key." You use your personal Claude API key from Anthropic. This keeps your data private (we never see it), gives you full control, and means you only pay for exactly what you use. It's the fairest model for both of us.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>How much does each validation cost?</h3>
+                    <p>Each validation costs approximately $0.01-0.03 in Claude API usage. That's pennies for potentially avoiding a $50K mistake. The app shows real-time cost tracking so you always know what you're paying.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Do I need a Claude API key to start?</h3>
+                    <p>Yes. But getting one is free and takes 2 minutes. Go to console.anthropic.com, sign up, and generate an API key. Anthropic offers free credits to start, and their pricing is incredibly affordable after that.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Can I use this for non-AI startups?</h3>
+                    <p>Absolutely! While it's optimized for AI tool validation, the framework works for any SaaS or digital product. The agents analyze problem fit, moat, market, and leverage—universal to all startups.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What if I've already started building?</h3>
+                    <p>Run the validation anyway. It might save you from continuing down the wrong path. Many founders have pivoted successfully after realizing their moat was weak or market was saturated. Better late than never.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Is this a subscription?</h3>
+                    <p>No. One-time payment of $79 gives you lifetime access to the app. Run unlimited validations forever. The only ongoing cost is your Claude API usage (pennies per validation).</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What if I get a "🔴 Delay" verdict?</h3>
+                    <p>That's actually a success! You just saved yourself months of wasted effort. The system will tell you exactly WHY you got that verdict and what to do next—pivot, build leverage first, or explore a different angle.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Who created this?</h3>
+                    <p>Dr. Vivian Nzegbulem, creator of the <a href="https://verticalsystems.xyz" target="_blank" style="color: var(--danger);">Vertical AI Orchestration</a> methodology. This is a production-ready implementation of that framework, specifically designed for startup validation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Validate Your Idea?</h2>
+            <p>30 minutes. $79 one-time. Could save you 6 months of wasted effort.</p>
+            <a href="mailto:contact@verticalsystems.xyz?subject=SaaS Reality Check Purchase" class="cta-white">
+                Get Started Now - $79
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 15px;">
+                <strong>SaaS Reality Check</strong> – A Vertical AI Orchestration System
+            </p>
+            <p style="margin-bottom: 10px;">
+                Created by <a href="https://www.linkedin.com/in/dr-vivian-nzegbulem-58ab3568/" target="_blank">Dr. Vivian Nzegbulem</a>
+            </p>
+            <p style="margin-bottom: 20px;">
+                <a href="https://verticalsystems.xyz" target="_blank">Vertical AI Orchestration Portfolio</a> |
+                <a href="mailto:contact@verticalsystems.xyz">Contact</a>
+            </p>
+            <p style="font-size: 0.9rem; color: #adb5bd;">
+                © 2025 Dr. Vivian Nzegbulem. All rights reserved. | Proprietary Software
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
