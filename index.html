@@ -644,52 +644,185 @@
             background: rgba(20, 184, 166, 0.1);
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: var(--space-3);
+            left: var(--space-3);
+            z-index: 2000;
+            background: var(--black);
+            border: 1px solid var(--white);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--teal);
+        }
+
+        /* Mobile overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            /* Show mobile menu button */
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            /* Hide nav by default on mobile */
             nav {
-                width: 200px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: var(--shadow-lg);
             }
 
+            /* Show nav when active */
+            nav.active {
+                transform: translateX(0);
+            }
+
+            .mobile-overlay.active {
+                display: block;
+            }
+
+            /* Full width body on mobile */
             body {
-                margin-left: 200px;
+                margin-left: 0;
             }
 
-            nav .logo {
-                font-size: var(--text-base);
-                padding: 0 var(--space-3) var(--space-3) var(--space-3);
+            /* Adjust hero for mobile button */
+            .hero {
+                padding: var(--space-12) var(--space-3) var(--space-8);
+            }
+
+            /* Single column grids */
+            .systems-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-3);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
+            }
+
+            .methodology-features {
+                grid-template-columns: 1fr;
+            }
+
+            /* Better touch targets */
+            .cta-button {
+                min-height: 48px;
+                padding: var(--space-3) var(--space-4);
+            }
+
+            .system-link {
+                min-height: 48px;
+                padding: var(--space-3) var(--space-4);
             }
 
             nav ul li a {
-                font-size: var(--text-xs);
-                padding: var(--space-2) var(--space-3);
+                min-height: 48px;
+                padding: var(--space-3) var(--space-4);
             }
 
-            .hero {
+            /* Tighter spacing on mobile */
+            .section {
                 padding: var(--space-8) var(--space-3);
             }
 
-            .systems-grid {
-                grid-template-columns: 1fr;
+            .stats-banner {
+                padding: var(--space-8) var(--space-3);
+            }
+
+            .methodology-section {
+                padding: var(--space-8) var(--space-3);
             }
 
             .methodology-content {
                 padding: var(--space-5) var(--space-3);
             }
 
+            .ip-section {
+                padding: var(--space-8) var(--space-3);
+            }
+
+            footer {
+                padding: var(--space-8) var(--space-3);
+            }
+
+            /* Smaller stat numbers on mobile */
+            .stat-number {
+                font-size: var(--text-5xl);
+            }
+
+            /* Stack CTA buttons */
             .cta-buttons {
                 flex-direction: column;
-                align-items: stretch;
+                gap: var(--space-2);
             }
 
             .cta-button {
                 width: 100%;
                 text-align: center;
             }
+
+            /* Card padding */
+            .system-card {
+                padding: var(--space-5);
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Even smaller spacing on very small screens */
+            .hero h1 {
+                font-size: clamp(2rem, 10vw, 3rem);
+            }
+
+            .stat-number {
+                font-size: var(--text-4xl);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-3);
+            }
+
+            .section-header h2 {
+                font-size: var(--text-3xl);
+            }
+
+            .methodology-content h2 {
+                font-size: var(--text-3xl);
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <nav id="mainNav">
         <a href="index.html" class="logo">Vertical AI<br>Orchestration</a>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -979,5 +1112,36 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleMenu() {
+            mainNav.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    </script>
 </body>
 </html>
