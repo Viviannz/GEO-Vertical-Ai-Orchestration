@@ -208,6 +208,20 @@
                 margin-left: 0;
             }
 
+            /* Expand content to full width on mobile */
+            .hero-content,
+            .methodology-content,
+            .ip-content,
+            main,
+            main > div {
+                max-width: 100% !important;
+            }
+
+            header > div {
+                padding-left: var(--space-2) !important;
+                padding-right: var(--space-2) !important;
+            }
+
             /* Adjust hero for mobile button */
             .hero, header {
                 padding: var(--space-12) var(--space-2) var(--space-8);
@@ -338,13 +352,13 @@
     </nav>
     <header>
         
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
 <h1>Startup OS 2.0</h1>
         <p class="subtitle">AI Chief of Staff for Entrepreneurs</p>
         <p class="tagline">From idea to scale with modular AI orchestration</p>
         </div>
     </header>
-    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-4);">
+    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-2);">
         <div style="background: var(--white); padding: var(--space-8); border: 1px solid var(--gray-100);">
             <p>Startup OS 2.0 is an AI chief of staff system designed specifically for entrepreneurs and startup founders. It provides comprehensive business support across all essential functions, from strategy and planning to execution and operations.</p>
 
@@ -385,7 +399,7 @@
     </main>
     <footer>
         
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
 <p>
             <strong>Startup OS 2.0</strong> – A Vertical AI Orchestration System<br>
             Dr. Vivian Nzegbulem | Ai4this<br>

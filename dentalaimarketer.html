@@ -212,6 +212,20 @@
                 margin-left: 0;
             }
 
+            /* Expand content to full width on mobile */
+            .hero-content,
+            .methodology-content,
+            .ip-content,
+            main,
+            main > div {
+                max-width: 100% !important;
+            }
+
+            header > div {
+                padding-left: var(--space-2) !important;
+                padding-right: var(--space-2) !important;
+            }
+
             /* Adjust hero for mobile button */
             .hero, header {
                 padding: var(--space-12) var(--space-2) var(--space-8);
@@ -342,13 +356,13 @@
     </nav>
     <header>
         
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
 <h1>DentalAiMarketer</h1>
         <p class="subtitle">AI Marketing System for Dental Practices</p>
         <p class="tagline">From ideal patient profiling to multi-platform campaign execution</p>
         </div>
     </header>
-    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-4);">
+    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-2);">
         <div style="background: var(--white); padding: var(--space-8); border: 1px solid var(--gray-100);">
             <p>DentalAiMarketer is an AI marketing system specifically designed for dental practices, guiding practitioners from patient persona development through complete marketing campaign creation with industry-specific expertise.</p>
 
@@ -389,7 +403,7 @@
     </main>
     <footer>
         
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
 <p>
             <strong>DentalAiMarketer</strong> – A Vertical AI Orchestration System<br>
             Dr. Vivian Nzegbulem | Ai4this<br>

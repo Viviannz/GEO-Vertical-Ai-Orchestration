@@ -212,6 +212,20 @@
                 margin-left: 0;
             }
 
+            /* Expand content to full width on mobile */
+            .hero-content,
+            .methodology-content,
+            .ip-content,
+            main,
+            main > div {
+                max-width: 100% !important;
+            }
+
+            header > div {
+                padding-left: var(--space-2) !important;
+                padding-right: var(--space-2) !important;
+            }
+
             /* Adjust hero for mobile button */
             .hero, header {
                 padding: var(--space-12) var(--space-2) var(--space-8);
@@ -342,13 +356,13 @@
     </nav>
     <header>
         
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
 <h1>InnovateTechOS</h1>
         <p class="subtitle">AI Business Operating System for Modern Companies</p>
         <p class="tagline">A production-ready implementation of Vertical AI Orchestration</p>
         </div>
     </header>
-    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-4);">
+    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-2);">
         <div style="background: var(--white); padding: var(--space-8); border: 1px solid var(--gray-100);">
             <p>InnovateTechOS is a comprehensive AI operating system designed for modern companies, providing intelligent support across all core business departments. The system delivers context-aware assistance for Finance, Operations, Technology, Product, Sales, Customer Success, and People & Culture functions.</p>
 
@@ -389,7 +403,7 @@
     </main>
     <footer>
         
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
 <p>
             <strong>InnovateTechOS</strong> – A Vertical AI Orchestration System<br>
             Dr. Vivian Nzegbulem | Ai4this<br>

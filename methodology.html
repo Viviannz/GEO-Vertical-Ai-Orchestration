@@ -231,6 +231,20 @@
                 margin-left: 0;
             }
 
+            /* Expand content to full width on mobile */
+            .hero-content,
+            .methodology-content,
+            .ip-content,
+            main,
+            main > div {
+                max-width: 100% !important;
+            }
+
+            header > div {
+                padding-left: var(--space-2) !important;
+                padding-right: var(--space-2) !important;
+            }
+
             /* Adjust hero for mobile button */
             .hero, header {
                 padding: var(--space-12) var(--space-2) var(--space-8);
@@ -360,7 +374,7 @@
         </ul>
     </nav>
     <header>
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
             <h1>Vertical AI Orchestration</h1>
             <p class="subtitle">Building Multi-Agent AI Architectures That Mirror Organisational Structure</p>
             <div class="attribution">
@@ -369,7 +383,7 @@
             </div>
         </div>
     </header>
-    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-4);">
+    <main style="max-width: 900px; margin: 0 auto; padding: var(--space-12) var(--space-2);">
         <div style="background: var(--white); padding: var(--space-8); border: 1px solid var(--gray-100);">
             <p>Vertical AI Orchestration is a proprietary methodology for building multi-agent AI systems that align with organisational structures and business workflows. The approach enables AI solutions that understand context, deliver quality outputs, and integrate seamlessly into existing business processes.</p>
 
@@ -417,7 +431,7 @@
         </div>
     </main>
     <footer>
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 var(--space-2);">
             <p>
                 <strong style="font-size: 1rem;">Vertical AI Orchestration</strong><br>
                 Dr. Vivian Nzegbulem | Ai4this<br>
