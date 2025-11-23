@@ -709,7 +709,7 @@
 
             /* Adjust hero for mobile button */
             .hero {
-                padding: var(--space-12) var(--space-3) var(--space-8);
+                padding: var(--space-12) var(--space-2) var(--space-8);
             }
 
             /* Single column grids */
@@ -743,29 +743,34 @@
                 padding: var(--space-3) var(--space-4);
             }
 
-            /* Tighter spacing on mobile */
+            /* Wider content on mobile - less horizontal padding */
             .section {
-                padding: var(--space-8) var(--space-3);
+                padding: var(--space-8) var(--space-2);
             }
 
             .stats-banner {
-                padding: var(--space-8) var(--space-3);
+                padding: var(--space-8) var(--space-2);
             }
 
             .methodology-section {
-                padding: var(--space-8) var(--space-3);
+                padding: var(--space-8) var(--space-2);
             }
 
             .methodology-content {
-                padding: var(--space-5) var(--space-3);
+                padding: var(--space-5) var(--space-2);
             }
 
             .ip-section {
-                padding: var(--space-8) var(--space-3);
+                padding: var(--space-8) var(--space-2);
             }
 
             footer {
-                padding: var(--space-8) var(--space-3);
+                padding: var(--space-8) var(--space-2);
+            }
+
+            /* Container adjustments for mobile */
+            .container {
+                padding: 15px var(--space-2);
             }
 
             /* Smaller stat numbers on mobile */
@@ -791,7 +796,7 @@
         }
 
         @media (max-width: 480px) {
-            /* Even smaller spacing on very small screens */
+            /* Maximum width usage on very small screens */
             .hero h1 {
                 font-size: clamp(2rem, 10vw, 3rem);
             }
@@ -811,6 +816,27 @@
 
             .methodology-content h2 {
                 font-size: var(--text-3xl);
+            }
+
+            /* Even less padding on tiny screens */
+            .section, .stats-banner, .methodology-section, .ip-section, footer {
+                padding-left: var(--space-1);
+                padding-right: var(--space-1);
+            }
+
+            .methodology-content {
+                padding-left: var(--space-1);
+                padding-right: var(--space-1);
+            }
+
+            .container {
+                padding-left: var(--space-1);
+                padding-right: var(--space-1);
+            }
+
+            .hero {
+                padding-left: var(--space-1);
+                padding-right: var(--space-1);
             }
         }
     </style>
